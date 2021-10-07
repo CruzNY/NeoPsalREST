@@ -26,7 +26,7 @@ public class RegistrationService {
         if(!isValidEmail){
             throw new IllegalStateException("Email Not Valid");
         }
-        String token =  appUserService.signUpUser(new AppUser(request.getFirstName(), request.getLastName(), request.getEmail(),request.getPassword(), AppUserRole.ROLE_USER));
+        String token =  appUserService.signUpUser(new AppUser(request.getFirstName(), request.getLastName(), request.getEmail(),request.getPassword(), request.getRole()));
         //imp logic
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
         emailSender.send(request.getEmail(),buildEmail(request.getFirstName(),link));
