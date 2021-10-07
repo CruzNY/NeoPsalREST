@@ -1,0 +1,41 @@
+server:
+  error:
+    include-message: always
+    include-bidning-errors: always
+
+spring:
+  output.ansi.enabled: ALWAYS
+  datasource:
+    password: Spikesin13
+    url: jdbc:postgresql://localhost:5433/neopsal
+    username: postgres
+  jpa:
+    hibernate:
+          ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+  mail:
+    host: localhost
+    port: 1025
+    username: hello
+    password: hello
+
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+
+logging:
+  level:
+    org.springframework.web: ERROR
+#    org.hibernate: ERROR
