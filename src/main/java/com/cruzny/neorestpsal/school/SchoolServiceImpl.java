@@ -16,7 +16,8 @@ public class SchoolServiceImpl extends GenericServiceImpl<School,Long> implement
         return schoolRepository;
     }
 
-    public void addSchool(School school){
-        getRepository().save(school);
+    public void addSchool(String schoolName, String address, String city, String state){
+        School newSchool = new School(schoolName,address,state,city);
+        getRepository().save(newSchool);
     }
 }

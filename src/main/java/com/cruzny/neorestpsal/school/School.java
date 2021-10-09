@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class School {
     @Id
     @SequenceGenerator(
@@ -24,10 +23,16 @@ public class School {
             generator = "school_sequence"
     )
     private Long id;
-    private String name;
+    private String schoolName;
     private String streetAddress;
     private String state;
     private String city;
 
+    public School(String schoolName, String streetAddress, String state, String city){
+        this.schoolName = schoolName;
+        this.streetAddress = streetAddress;
+        this.state = state;
+        this.city = city;
+    }
     // Other school related information.
 }
