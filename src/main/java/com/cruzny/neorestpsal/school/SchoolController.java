@@ -27,6 +27,7 @@ public class SchoolController {
     public List<School> getAllSchools(){
         return schoolServiceImpl.getAllSchools();
     }
+
     @PostMapping("/delete/{id}")
     public ResponseEntity<String> deleteSchool(@PathVariable Long id){
         schoolServiceImpl.deleteSchool(id);

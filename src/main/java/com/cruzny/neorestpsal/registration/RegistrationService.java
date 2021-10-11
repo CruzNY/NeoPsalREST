@@ -1,11 +1,10 @@
 package com.cruzny.neorestpsal.registration;
 
-import com.cruzny.neorestpsal.app_user.AppUser;
-import com.cruzny.neorestpsal.app_user.AppUserRole;
 import com.cruzny.neorestpsal.app_user.AppUserService;
 import com.cruzny.neorestpsal.email.EmailSender;
 import com.cruzny.neorestpsal.registration.token.ConfirmationToken;
 import com.cruzny.neorestpsal.registration.token.ConfirmationTokenService;
+import com.cruzny.neorestpsal.app_user.student.Student;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +25,16 @@ public class RegistrationService {
         if(!isValidEmail){
             throw new IllegalStateException("Email Not Valid");
         }
-        String token =  appUserService.signUpUser(new AppUser(request.getFirstName(), request.getLastName(), request.getEmail(),request.getPassword(), request.getRole()));
+//        String token = "";
+//        switch(request.getRole()){
+//            case ROLE_STUDENT:
+//                System.out.println("Creating Student");
+//                token +=  appUserService.signUpUser(new Student(request.getFirstName(), request.getLastName(), request.getEmail(),request.getPassword(), request.getRole()));
+//            break;
+//            case ROLE_ADMIN:token +=  appUserService.signUpUser(new AppUser(request.getFirstName(), request.getLastName(), request.getEmail(),request.getPassword(), request.getRole()));
+//            break;
+//        }
+        String token =  appUserService.signUpUser(new Student(request.getFirstName(), request.getLastName(), request.getEmail(),request.getPassword(), request.getRole()));
         //imp logic
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
         emailSender.send(request.getEmail(),buildEmail(request.getFirstName(),link));
