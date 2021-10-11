@@ -1,6 +1,7 @@
 package com.cruzny.neorestpsal.commons;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
