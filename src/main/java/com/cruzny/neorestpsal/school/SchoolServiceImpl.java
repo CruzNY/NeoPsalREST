@@ -32,7 +32,6 @@ public class SchoolServiceImpl extends GenericServiceImpl<School,Long> implement
 
     public void addStudentToSchool(Long schoolId, String studentEmail){
         School school = get(schoolId);
-//        Student student = appUserRepository.findByEmail(studentEmail).get();
         System.out.println(appUserService.userExists(studentEmail));
         Student student = (Student) appUserService.loadUserByEmail(studentEmail);
         student.getSchoolSet().add(school);
