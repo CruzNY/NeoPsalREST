@@ -58,4 +58,8 @@ public class AppUserService implements UserDetailsService {
     public int enableAppUser(String email) {
         return appUserRepository.enableAppUser(email);
     }
+    public void saveUser(AppUser user){
+        appUserRepository.save(user);
+        System.out.println(user.getEmail() +"Saved");
+    }
 }

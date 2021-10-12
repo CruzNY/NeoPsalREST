@@ -1,6 +1,9 @@
 package com.cruzny.neorestpsal.school;
 
+import com.cruzny.neorestpsal.app_user.AppUser;
 import com.cruzny.neorestpsal.app_user.AppUserRepository;
+import com.cruzny.neorestpsal.app_user.AppUserRole;
+import com.cruzny.neorestpsal.app_user.AppUserService;
 import com.cruzny.neorestpsal.app_user.student.Student;
 import com.cruzny.neorestpsal.commons.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,7 @@ public class SchoolServiceImpl extends GenericServiceImpl<School,Long> implement
     @Autowired
     private SchoolRepository schoolRepository;
     @Autowired
-    private AppUserRepository appUserRepository;
+    private AppUserService appUserService;
 
     @Override
     public CrudRepository<School, Long> getRepository() {
@@ -39,10 +42,14 @@ public class SchoolServiceImpl extends GenericServiceImpl<School,Long> implement
     }
     public void addStudentToSchool(Long schoolId, String studentEmail){
         School school = get(schoolId);
-        Student student = (Student) appUserRepository.findByEmail(studentEmail).get();
+//        Student student = appUserRepository.findByEmail(studentEmail).get();
+        System.out.println(appUserService.userExists(studentEmail));
+        Student student = (Student) appUserService.loadUserByEmail(studentEmail);
+        student.getSchoolSet().add(school);
+        school.getStudentSett().add(student);
         save(school);
-        System.out.println("Saved School");
-        appUserRepository.save(student);
-        System.out.println("Saved Student");
+        appUserService.saveUser(student);
+        System.out.println(studentEmail+" Added");
+
     }
 }

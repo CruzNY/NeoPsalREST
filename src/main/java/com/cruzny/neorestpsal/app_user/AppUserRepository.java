@@ -1,5 +1,6 @@
 package com.cruzny.neorestpsal.app_user;
 
+import com.cruzny.neorestpsal.app_user.student.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,6 +13,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public interface AppUserRepository extends CrudRepository<AppUser, Long> {
     Optional<AppUser> findByEmail(String email);
+    Optional<Student> findStudentByEmail(String email);
     @Transactional
     @Modifying
     @Query("UPDATE AppUser a " +
