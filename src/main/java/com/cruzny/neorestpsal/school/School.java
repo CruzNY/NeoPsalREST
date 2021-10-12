@@ -1,11 +1,13 @@
 package com.cruzny.neorestpsal.school;
 
-import lombok.AllArgsConstructor;
+import com.cruzny.neorestpsal.app_user.student.Student;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -27,6 +29,9 @@ public class School {
     private String streetAddress;
     private String state;
     private String city;
+
+    @ManyToMany(mappedBy = "schoolSet")
+    private Set<Student> studentSett = new HashSet<>();
 
     public School(String schoolName, String streetAddress, String state, String city){
         this.schoolName = schoolName;

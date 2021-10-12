@@ -33,4 +33,9 @@ public class SchoolController {
         schoolServiceImpl.deleteSchool(id);
         return ResponseEntity.ok("School Deleted");
     }
+    @PostMapping("/addToSchool")
+    public ResponseEntity<String> addStudentToSchool(@RequestBody AddStudentToSchoolRequest request){
+        schoolServiceImpl.addStudentToSchool(request.getId(), request.getEmailAddress());
+        return ResponseEntity.ok("Student Added");
+    }
 }

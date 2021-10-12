@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public abstract class GenericServiceImpl<T, ID extends Serializable> implements GenericService<T,ID> {
@@ -24,7 +25,7 @@ public abstract class GenericServiceImpl<T, ID extends Serializable> implements 
     @Override
     public T get(ID id) {
         Optional<T> objs = getRepository().findById(id);
-        if(objs.isPresent())
+        if (objs.isPresent())
             return objs.get();
         return null;
     }
