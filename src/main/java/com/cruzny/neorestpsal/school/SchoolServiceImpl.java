@@ -34,12 +34,6 @@ public class SchoolServiceImpl extends GenericServiceImpl<School,Long> implement
         return get(id);
     }
 
-    public List<School> getAllSchools(){
-        return getAll();
-    }
-    public void deleteSchool(Long id){
-        delete(id);
-    }
     public void addStudentToSchool(Long schoolId, String studentEmail){
         School school = get(schoolId);
 //        Student student = appUserRepository.findByEmail(studentEmail).get();
