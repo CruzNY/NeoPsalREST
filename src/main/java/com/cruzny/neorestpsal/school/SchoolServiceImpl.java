@@ -30,10 +30,6 @@ public class SchoolServiceImpl extends GenericServiceImpl<School,Long> implement
         save(newSchool);
     }
 
-    public School getSchool(Long id){
-        return get(id);
-    }
-
     public void addStudentToSchool(Long schoolId, String studentEmail){
         School school = get(schoolId);
 //        Student student = appUserRepository.findByEmail(studentEmail).get();
